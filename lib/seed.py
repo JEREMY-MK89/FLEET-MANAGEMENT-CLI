@@ -1,18 +1,21 @@
+from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model import Base, Driver, Vehicle, Allocation
 
+# Create engine and bind metadata
+engine = create_engine('sqlite:///fleet_management.db')
+
 def seed_data():
-    engine = create_engine('sqlite:///fleet_management.db')
     Session = sessionmaker(bind=engine)
     session = Session()
 
     # Sample data for allocations
     sample_allocations = [
-        {"driver_id": 1, "vehicle_id": 1, "allocation_date": "2024-02-15", "fuel_amount": 30.5},
-        {"driver_id": 2, "vehicle_id": 2, "allocation_date": "2024-02-16", "fuel_amount": 50.0},
-        {"driver_id": 3, "vehicle_id": 3, "allocation_date": "2024-02-17", "fuel_amount": 100.0},
-        {"driver_id": 4, "vehicle_id": 4, "allocation_date": "2024-02-19", "fuel_amount": 250.0},
+        {"driver_id": 1, "vehicle_id": 1, "allocation_date": datetime.strptime("2024-02-15", "%Y-%m-%d"), "fuel_amount": 30.5},
+        {"driver_id": 2, "vehicle_id": 2, "allocation_date": datetime.strptime("2024-02-16", "%Y-%m-%d"), "fuel_amount": 50.0},
+        {"driver_id": 3, "vehicle_id": 3, "allocation_date": datetime.strptime("2024-02-17", "%Y-%m-%d"), "fuel_amount": 100.0},
+        {"driver_id": 4, "vehicle_id": 4, "allocation_date": datetime.strptime("2024-02-19", "%Y-%m-%d"), "fuel_amount": 250.0},
     ]
 
     # Populate allocations table with sample data
@@ -54,5 +57,7 @@ def seed_data():
     print("Database seeded with sample data.")
 
 if __name__ == '__main__':
+    # Create tables before seeding data
     Base.metadata.create_all(engine)
+    # Seed the data
     seed_data()

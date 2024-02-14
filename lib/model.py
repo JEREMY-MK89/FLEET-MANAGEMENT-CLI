@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey, Table
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
 
 Base = declarative_base()
@@ -47,8 +46,3 @@ class Vehicle(Base):
     def __repr__(self):
         return f'Vehicle(id={self.id}, type={self.type}, brand={self.brand}, ' + \
                f'model={self.model}, registration_number={self.registration_number})'
-
-# Create SQLite database engine
-engine = create_engine('sqlite:///fleet_management.db')
-Base.metadata.create_all(engine)
-
