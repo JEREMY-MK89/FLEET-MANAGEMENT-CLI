@@ -1,0 +1,145 @@
+# Project Name: FLEET MANAGEMENT SYSTEM
+ 
+INTRODUCTION
+Management of vehicles as a critical assest in many organizations is and has always been a major problem. Most of the time drivers allocated company vehicles do run personal or unauthorized trips with the vehicles allocated to them. Fuel costs are major expenditure and repairs too.
+ 
+PROBLEM STATEMENT
+Most companies run manual fleet management systems for example government vehicles have manual work ticketing and outsourced repairs but no digital tracking of vehicles data.
+My project aims at the governmental side of tracking drivers, vehicles use and fuel consumption so as to identify unique patterns from the database to be created using python Sqlalechmy.
+A many to many relationship model of the fleet management where,
+A driver can be registered, allocated vehicle and track the vehicles details.
+
+OBJECTIVES
+This project aims to provide a functional digital the database to be created using python Sqlalechmy with these objectives:
+  .Track driver’s usage of the vehicle allocated
+•	Reduce and curb  high misuse of vehicle
+•	Reduce costs of operations by monitoring fuel consumption
+•	Protect organizational assists(the vehicles)
+•	Reward the drivers with great records
+•	Track which vehicle brand is long lasting for future purchases.
+ 
+ITS MVP/FEATURES:-
+Fleet management system Simple Application.
+1. To have a DB diagram
+2.	 Have the model.py, seed.py, debug.py, CLI.py
+3. Register a driver on login in/sign-up
+4. Use the signing up credentials to login
+5.	Give the different types of vehicles, its brand, registration number and drivers when queried.
+6.	List the drivers or vehicle
+7. Add new drivers, vehicles (type and model) and registration 
+8. Delete driver and vehicle.
+9. Give the amount of fuel used by a vehicle 
+10.	The data of allocation of the vehicle to a driver for tracking 
+
+
+Options:
+1. Registration/Login
+2. Add Driver
+3. Update Driver
+4. Delete Driver
+5. Add Vehicle
+6. Add Allocation
+7. List Drivers
+8. List Vehicles
+0. Exit
+
+
+## Table of Contents
+
+-Project’s Description
+- #installation to use for the project
+run pipenv install && pipenv shell
+/projectphase3/lib_model.py
+alembic upgrade head
+run alembic init migrations
+python seed.py
+python debug.py
+python cli.py
+alembic revision -m "commit statements"
+alembic revision --autogenerate -m "Create tables",
+alembic revision --autogenerate -m "Add columns to drivers tables",
+sqlite fleet_management.db to open sqlite in terminal.
+[License](#license)
+
+
+## Description
+This is a simple backend application that uses database information to the user when queried for decision making, especially in the transport sector.
+
+## Installation
+
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies using run pipenv install && pipenv shell
+4.pip install alembic
+5. pip install ipdb
+
+
+## Contributing
+
+Contributions are welcome. Please fork the repository and create a pull request for any proposed changes.
+
+## License
+
+This project is licensed under the :-
+a) https://github.com/JEREMY-MK89/FLEET-MANAGEMENT-CLI
+
+### LANGUAGES TO BE USED
+Back-End Interface: Sqlalchemy-SQLITE
+
+
+### DB diagram Its code 
+CREATE TABLE `Allocation` (
+  `id` Integer PRIMARY KEY,
+  `driver_id` Integer NOT NULL,
+  `vehicle_id` Integer NOT NULL,
+  `allocation_date` Date NOT NULL,
+  `fuel_amount` Float NOT NULL,
+  `driver` Driver,
+  `vehicle` Vehicle
+);
+
+CREATE TABLE `Driver` (
+  `id` Integer PRIMARY KEY,
+  `name` String NOT NULL,
+  `allocations` Allocation
+);
+
+CREATE TABLE `Vehicle` (
+  `id` Integer PRIMARY KEY,
+  `type` String NOT NULL,
+  `brand` String NOT NULL,
+  `model` String NOT NULL,
+  `registration_number` String NOT NULL,
+  `allocations` Allocation
+);
+
+ALTER TABLE `Allocation` ADD FOREIGN KEY (`driver`) REFERENCES `Driver` (`allocations`);
+
+ALTER TABLE `Allocation` ADD FOREIGN KEY (`vehicle`) REFERENCES `Vehicle` (`allocations`);
+
+ALTER TABLE `Allocation` ADD FOREIGN KEY (`driver_id`) REFERENCES `Driver` (`id`);
+
+ALTER TABLE `Allocation` ADD FOREIGN KEY (`vehicle_id`) REFERENCES `Vehicle` (`id`);
+
+ALTER TABLE `Allocation` ADD FOREIGN KEY (`driver_id`) REFERENCES `Driver` (`allocations`);
+
+ALTER TABLE `Allocation` ADD FOREIGN KEY (`vehicle_id`) REFERENCES `Vehicle` (`allocations`);
+
+
+### PROJCET STRUCTURE
+
+/root/projectphase3/
+|-- MY_LIB
+|   |-- db
+|   |   |-- (fleet_management.db-related files)
+|   |-- migrations
+|   |   |-- versions
+|   |   |-- env.py
+|   |   |-- README
+|   |   |-- alembic.ini
+|   |-- debug.py
+|   |-- models.py
+|   |-- seed.py
+|-- .gitignore
+
+
