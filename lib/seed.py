@@ -25,10 +25,10 @@ def seed_data():
 
     # Sample data for drivers
     sample_drivers = [
-        {"name": "Muthengi muthami", "vehicles": [1]},
-        {"name": "charles kirui", "vehicles": [2]},
-        {"name": "John munene", "vehicles": [3]},
-        {"name": "Rashid Ali Smith", "vehicles": [4]},
+        {"name": "Muthengi Muthami", "personal_number": "001", "court_division": "Nairobi", "email": "muthengi@example.com", "vehicles": [1]},
+        {"name": "Charles Kirui", "personal_number": "002", "court_division": "Mombasa", "email": "charles@example.com", "vehicles": [2]},
+        {"name": "John Munene", "personal_number": "003", "court_division": "Kisumu", "email": "john@example.com", "vehicles": [3]},
+        {"name": "Rashid Ali Smith", "personal_number": "004", "court_division": "Nakuru", "email": "rashid@example.com", "vehicles": [4]},
     ]
 
     # Populate drivers table with sample data
@@ -42,8 +42,8 @@ def seed_data():
     sample_vehicles = [
         {"type": "Car", "brand": "Toyota", "model": "Sedan", "registration_number": "ABC123", "drivers": [1]},
         {"type": "Van", "brand": "Ford", "model": "Heavy Duty", "registration_number": "DEF456", "drivers": [2]},
-        {"type": "Truck", "brand": "Ford", "model": "Heavy Duty", "registration_number": "DEF456", "drivers": [3]},
-        {"type": "Bus", "brand": "Ford", "model": "Heavy Duty", "registration_number": "DEF456", "drivers": [4]},
+        {"type": "Truck", "brand": "Isuzu", "model": "N-Series", "registration_number": "GHI789", "drivers": [3]},
+        {"type": "Bus", "brand": "Scania", "model": "K-Series", "registration_number": "JKL012", "drivers": [4]},
     ]
 
     # Populate vehicles table with sample data
