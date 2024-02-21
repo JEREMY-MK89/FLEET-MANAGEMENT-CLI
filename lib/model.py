@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship, declarative_base
-from sqlalchemy import create_engine
 
 Base = declarative_base()
 
@@ -27,11 +26,15 @@ class Driver(Base):
     __tablename__ = 'drivers'
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+    personal_number = Column(String, nullable=False, server_default='')  # Added this line
+    court_division = Column(String, nullable=False, server_default='')  # Added this line
+    email = Column(String, nullable=False, server_default='')  # Added this line
     allocations = relationship('Allocation', back_populates='driver')
     vehicles = relationship('Vehicle', secondary=association_table, back_populates='drivers')
 
     def __repr__(self):
-        return f'Driver(id={self.id}, name={self.name})'
+        return f'Driver(id={self.id}, name={self.name}, personal_number={self.personal_number}, ' + \
+               f'court_division={self.court_division}, email={self.email})'
 
 class Vehicle(Base):
     __tablename__ = 'vehicles'
